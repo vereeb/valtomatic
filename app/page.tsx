@@ -1,10 +1,13 @@
 "use client";
 
 import { useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
+import { getSupabaseBrowserClient } from "../lib/supabase-browser";
 
 export default function Home() {
   const [message, setMessage] = useState<string | null>(null);
   const [showRegistration, setShowRegistration] = useState(false);
+  const [registrationMessage, setRegistrationMessage] = useState<string | null>(null);
+  const [isRegistering, setIsRegistering] = useState(false);
   const flickFrames = useRef(new WeakMap<HTMLSpanElement, number>());
 
   const handleFlick = (event: ReactMouseEvent<HTMLSpanElement>) => {
@@ -34,6 +37,37 @@ export default function Home() {
     };
     chip.style.transition = "none";
     flickFrames.current.set(chip, requestAnimationFrame(animate));
+  };
+
+  const handleRegistration = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setRegistrationMessage(null);
+
+    const formData = new FormData(event.currentTarget);
+    const email = String(formData.get("email") ?? "").trim();
+    const password = String(formData.get("password") ?? "");
+    const supabase = getSupabaseBrowserClient();
+
+    if (!supabase) {
+      setRegistrationMessage("A regisztrációs szolgáltatás még nincs beállítva. Kérjük, próbáld meg később.");
+      return;
+    }
+
+    setIsRegistering(true);
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { emailRedirectTo: `${window.location.origin}/` },
+    });
+    setIsRegistering(false);
+
+    if (error) {
+      setRegistrationMessage("A regisztráció nem sikerült. Ellenőrizd az adataidat, majd próbáld újra.");
+      return;
+    }
+
+    setRegistrationMessage("Elküldtük a megerősítő e-mailt. A fiók aktiválásához nyisd meg a benne lévő linket.");
+    event.currentTarget.reset();
   };
   return (
     <main className="landing">
@@ -70,13 +104,14 @@ export default function Home() {
           <p className="eyebrow">FIÓK LÉTREHOZÁSA</p>
           <h2 id="registration-title">Regisztráció</h2>
           <p className="registration-intro">Add meg az adataidat a kezdéshez.</p>
-          <form className="registration-form" onSubmit={(event) => { event.preventDefault(); setMessage("A regisztráció még nem aktív. Az adataid nem kerültek mentésre."); setShowRegistration(false); }}>
+          <form className="registration-form" onSubmit={handleRegistration}>
             <label>E-mail cím<input type="email" name="email" autoComplete="email" placeholder="pelda@email.hu" required /></label>
             <label>Telefonszám<input type="tel" name="phone" autoComplete="tel" placeholder="+36 30 123 4567" required /></label>
             <label>Jelszó<input type="password" name="password" autoComplete="new-password" placeholder="Legalább 8 karakter" minLength={8} required /></label>
-            <button className="registration-submit" type="submit">Regisztráció folytatása <span>→</span></button>
+            <button className="registration-submit" type="submit" disabled={isRegistering}>{isRegistering ? "Regisztráció folyamatban…" : "Regisztráció folytatása"} <span>→</span></button>
           </form>
-          <p className="registration-note">Ez jelenleg egy felületi előnézet. Az adatokat nem mentjük el.</p>
+          {registrationMessage && <p className="registration-feedback" role="status">{registrationMessage}</p>}
+          <p className="registration-note">A telefonszámot ebben a lépésben még nem mentjük el.</p>
         </section>
       </div>}
     </main>
