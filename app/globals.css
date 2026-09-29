@@ -1,16 +1,22 @@
-:root { --ink: #18342b; --green: #1d5b48; --paper: #f7f7f2; --muted: #63746b; --line: #dce3dc; }
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Montserrat:wght@200;300;400;500&display=swap");
+
+:root { --ink: #f5f3ff; --muted: #a8a6b8; --violet: #9d95ff; --night: #070708; }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
-.coming-soon { min-height: 100dvh; max-width: 1280px; margin: auto; padding: 28px 58px 24px; display: grid; grid-template-rows: auto 1fr auto; }
-.coming-soon-header, footer { display: flex; align-items: center; justify-content: space-between; }
-.brand { display: flex; align-items: center; gap: 10px; font-size: 23px; font-weight: 700; letter-spacing: -1.3px; }
-.brand-mark { width: 30px; height: 30px; border-radius: 9px; background: var(--green); color: #fff; display: grid; place-items: center; font: bold 21px Georgia, serif; }
-.status-pill { border: 1px solid #cbd9d0; border-radius: 999px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: 1.25px; padding: 8px 11px; }
-.coming-soon-content { width: min(100%, 860px); align-self: center; margin: 0 auto; padding: 6vh 6% 8vh; }
-.eyebrow { margin: 0 0 20px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: 1.55px; }
-h1 { max-width: 790px; margin: 0; font: 600 clamp(53px, 7.1vw, 104px)/.98 Georgia, serif; letter-spacing: -4.7px; }
-h1 em { color: var(--green); font-weight: 400; }
-.description { max-width: 465px; margin: 34px 0 0; color: var(--muted); font-size: 18px; line-height: 1.55; }
-.content-rule { width: 76px; height: 2px; margin-top: 42px; background: var(--green); }
-footer { color: #99a59d; font-size: 10px; }
-@media (max-width: 760px) { .coming-soon { padding: 20px; }.coming-soon-content { padding: 5vh 0 9vh; }h1 { font-size: clamp(49px, 14vw, 76px); letter-spacing: -3px; }.description { font-size: 16px; }.status-pill { font-size: 9px; } }
+html { background: var(--night); }
+body { min-width: 320px; margin: 0; background: var(--night); color: var(--ink); font-family: Manrope, Arial, sans-serif; }
+.coming-soon { min-height: 100dvh; isolation: isolate; position: relative; overflow: hidden; display: grid; grid-template-rows: auto 1fr auto; padding: 39px 4.3% 30px; background: radial-gradient(circle at 49% 42%, rgba(55, 49, 104, .17), transparent 32%), #070708; }
+.coming-soon::after { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .16; pointer-events: none; background-image: radial-gradient(rgba(255,255,255,.85) .45px, transparent .55px); background-size: 4px 4px; mask-image: linear-gradient(to bottom, transparent, #000 35%, #000 70%, transparent); }
+.planet { position: absolute; z-index: -1; width: min(74vw, 980px); aspect-ratio: 1; top: 9.5%; left: 50%; transform: translateX(-52%); border-radius: 50%; background: radial-gradient(circle at 27% 25%, rgba(198, 206, 255, .94) 0 1%, rgba(127, 133, 255, .72) 9%, rgba(50, 51, 121, .64) 26%, rgba(9, 9, 18, .99) 68%); box-shadow: -28px 1px 38px 3px rgba(112, 106, 255, .52), -65px 15px 100px 18px rgba(77, 69, 211, .24), inset 34px 0 70px rgba(174, 172, 255, .22); opacity: .95; }
+.coming-soon-header, footer { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; }
+.brand, h1 { font-family: Montserrat, Arial, sans-serif; font-weight: 300; letter-spacing: .31em; }
+.brand { font-size: 15px; line-height: 1; }
+.header-meta, .eyebrow, footer { margin: 0; color: rgba(241, 239, 255, .72); font-size: 10px; font-weight: 500; letter-spacing: .31em; }
+.header-meta { display: flex; align-items: center; gap: 18px; }
+.header-meta span { width: 1px; height: 10px; background: rgba(255,255,255,.42); }
+.coming-soon-content { align-self: center; position: relative; z-index: 1; margin-top: -3vh; text-align: center; }
+h1 { margin: 0; font-size: clamp(38px, 9.5vw, 144px); line-height: .95; text-indent: .31em; text-shadow: 0 0 30px rgba(233, 231, 255, .2); }
+.eyebrow { margin-top: clamp(33px, 5vh, 64px); color: #c4c1ed; font-size: clamp(11px, 1.15vw, 17px); letter-spacing: .76em; text-indent: .76em; }
+.description { max-width: 530px; margin: 31px auto 0; color: rgba(226, 224, 240, .78); font-size: 13px; line-height: 1.8; }
+footer { font-size: 8px; color: rgba(241, 239, 255, .42); letter-spacing: .23em; }
+@media (max-width: 760px) { .coming-soon { padding: 28px 23px 23px; }.planet { width: 128vw; top: 17%; left: 50%; }.brand { font-size: 11px; }.header-meta { display: none; }h1 { font-size: clamp(32px, 10.4vw, 62px); letter-spacing: .22em; text-indent: .22em; }.eyebrow { margin-top: 27px; font-size: 10px; letter-spacing: .54em; text-indent: .54em; }.description { max-width: 310px; margin-top: 25px; font-size: 12px; }footer span:last-child { display: none; } }
+@media (prefers-reduced-motion: reduce) { .planet { transform: translateX(-52%); } }
