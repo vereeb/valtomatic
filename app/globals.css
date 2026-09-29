@@ -1,22 +1,16 @@
-:root { --ink: #18342b; --green: #1d5b48; --deep: #123c31; --mint: #dcece2; --paper: #f7f7f2; --muted: #63746b; }
+:root { --ink: #18342b; --green: #1d5b48; --paper: #f7f7f2; --muted: #63746b; --line: #dce3dc; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
-.coming-soon { min-height: 100vh; max-width: 1280px; margin: auto; padding: 28px 58px 24px; display: grid; grid-template-columns: 1fr .92fr; grid-template-rows: auto 1fr auto; gap: 24px 50px; overflow: hidden; }
-.coming-soon-header, footer { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; }
+.coming-soon { min-height: 100dvh; max-width: 1280px; margin: auto; padding: 28px 58px 24px; display: grid; grid-template-rows: auto 1fr auto; }
+.coming-soon-header, footer { display: flex; align-items: center; justify-content: space-between; }
 .brand { display: flex; align-items: center; gap: 10px; font-size: 23px; font-weight: 700; letter-spacing: -1.3px; }
 .brand-mark { width: 30px; height: 30px; border-radius: 9px; background: var(--green); color: #fff; display: grid; place-items: center; font: bold 21px Georgia, serif; }
 .status-pill { border: 1px solid #cbd9d0; border-radius: 999px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: 1.25px; padding: 8px 11px; }
-.coming-soon-content { align-self: center; padding-left: 6%; position: relative; z-index: 1; }
-.eyebrow { margin: 0 0 18px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: 1.55px; }
-h1 { max-width: 650px; margin: 0; font: 600 clamp(48px, 5.2vw, 75px)/1.03 Georgia, serif; letter-spacing: -3px; }
+.coming-soon-content { width: min(100%, 860px); align-self: center; margin: 0 auto; padding: 6vh 6% 8vh; }
+.eyebrow { margin: 0 0 20px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: 1.55px; }
+h1 { max-width: 790px; margin: 0; font: 600 clamp(53px, 7.1vw, 104px)/.98 Georgia, serif; letter-spacing: -4.7px; }
 h1 em { color: var(--green); font-weight: 400; }
-.description { max-width: 430px; margin: 29px 0 0; color: var(--muted); font-size: 18px; line-height: 1.55; }
-.visual { min-height: 430px; position: relative; display: grid; place-items: center; overflow: hidden; border-radius: 24px; background: var(--deep); }
-.orbit { position: absolute; border: 1px solid rgba(209, 239, 220, .26); border-radius: 50%; }
-.orbit-large { width: 420px; height: 420px; }.orbit-small { width: 280px; height: 280px; }
-.exchange-card { position: relative; z-index: 1; width: 245px; padding: 24px; display: flex; align-items: center; justify-content: space-between; border-radius: 15px; background: #fdfdf9; color: var(--ink); font-size: 14px; font-weight: 700; box-shadow: 0 22px 60px rgba(1, 22, 16, .25); }
-.exchange-card b { width: 35px; height: 35px; display: grid; place-items: center; border-radius: 50%; background: var(--mint); color: var(--green); }
-.asset { position: absolute; z-index: 2; width: 54px; height: 54px; display: grid; place-items: center; border: 1px solid rgba(255, 255, 255, .35); border-radius: 50%; box-shadow: 0 10px 25px rgba(0, 0, 0, .16); font-size: 11px; font-weight: 700; }
-.asset-eur { top: 70px; left: 44px; background: #f4ebd5; color: #8e6c37; }.asset-usd { bottom: 64px; left: 57px; background: #d9eaf1; color: #2c6171; }.asset-usdc { top: 62px; right: 47px; background: #dce9fb; color: #376bb2; }.asset-sol { bottom: 54px; right: 45px; background: #dcdcf6; color: #514fa0; }
+.description { max-width: 465px; margin: 34px 0 0; color: var(--muted); font-size: 18px; line-height: 1.55; }
+.content-rule { width: 76px; height: 2px; margin-top: 42px; background: var(--green); }
 footer { color: #99a59d; font-size: 10px; }
-@media (max-width: 760px) { .coming-soon { min-height: 100dvh; padding: 20px; grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto; gap: 36px; }.coming-soon-content { padding-left: 0; }h1 { font-size: clamp(45px, 13vw, 62px); }.visual { min-height: 330px; }.orbit-large { width: 340px; height: 340px; }.orbit-small { width: 220px; height: 220px; } }
+@media (max-width: 760px) { .coming-soon { padding: 20px; }.coming-soon-content { padding: 5vh 0 9vh; }h1 { font-size: clamp(49px, 14vw, 76px); letter-spacing: -3px; }.description { font-size: 16px; }.status-pill { font-size: 9px; } }
