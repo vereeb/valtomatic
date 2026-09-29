@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Bridge Exchange",
-  description: "Non-custodial fiat-crypto átváltó felület vázlata",
+  title: "Valtomatic — Hamarosan",
+  description: "Váltás fiat és crypto között, gyorsan, egyszerűen.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
